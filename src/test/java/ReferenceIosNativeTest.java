@@ -45,7 +45,18 @@ public class ReferenceIosNativeTest {
 	}
 
 	@Test
-	public void calculation() {
+	public void calculationFirst() {
+		button3.click();
+		buttonMultiply.click();
+		button3.click();
+		buttonMultiply.click();
+		button2.click();
+		button3.click();
+		buttonEquals.click();
+		Assert.assertEquals("checking result is " + "69.0", "69.0", resultField.getText());
+	}
+	@Test
+	public void calculationSecond() {
 		button3.click();
 		buttonMultiply.click();
 		button3.click();
