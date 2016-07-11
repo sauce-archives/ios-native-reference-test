@@ -30,6 +30,7 @@ public class ReferenceIosNativeTest {
 	private MobileElement resultField;
 
 	private AppiumDriver driver;
+	private long startTime;
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,7 +40,8 @@ public class ReferenceIosNativeTest {
 		capabilities.setCapability("testobject_api_key", System.getenv("TESTOBJECT_API_KEY")); // API key through env variable
 		capabilities.setCapability("testobject_device", System.getenv("TESTOBJECT_DEVICE_ID")); // device id through env variable
 		capabilities.setCapability("testobject_appium_version", "1.5.2");
-
+		
+		this.startTime = System.currentTimeMillis();
 		driver = new IOSDriver(new URL("https://app.testobject.com:443/api/appium/wd/hub"), capabilities);
 		PageFactory.initElements(new AppiumFieldDecorator(driver), this);
 	}
@@ -69,6 +71,7 @@ public class ReferenceIosNativeTest {
 
 	@After
 	public void tearDown() {
+		System.out.println("Test took: " + (System.currentTimeMillis() - startTime));
 		if (driver != null) {
 			driver.quit();
 		}
